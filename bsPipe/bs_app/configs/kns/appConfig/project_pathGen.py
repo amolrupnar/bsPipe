@@ -13,20 +13,10 @@ projectName = os.environ['BSW_PROJECT_NAME']
 basePath = os.environ['BSW_PROJECT_DIR']
 
 
-class TestClass(object):
-    def __init__(self, *args):
-        self.assetType()
-
-    def __call__(self, *args, **kwargs):
-        print args
-        self.assetType()
-
-    # def __enter__(self):
-    #     self.assetType()
-
-    # @property
+class ProjectNamingInputs(object):
+    @property
     def assetType(self):
-        assetTyper = \
+        astType = \
             {
                 'Input': '00_inputs',
                 'Character': '01_char',
@@ -35,30 +25,19 @@ class TestClass(object):
                 'SetElement': '04_setElement',
                 'Vehicle': '05_vehicle'
             }
-        return assetTyper
+        return astType
 
-
-a = TestClass('amol', 'rupnar')
-print a
-# print a.assetType
-
-assetType = \
-    {
-        'Input': '00_inputs',
-        'Character': '01_char',
-        'Prop': '02_props',
-        'Set': '03_set',
-        'SetElement': '04_setElement',
-        'Vehicle': '05_vehicle'
-    }
-assetDept = \
-    {
-        'Design': '01_design',
-        'Model': '02_model',
-        'Texture': '03_texture',
-        'Light': '04_light',
-        'Rig': '05_rig'
-    }
+    @property
+    def assetDept(self):
+        astDept = \
+            {
+                'Design': '01_design',
+                'Model': '02_model',
+                'Texture': '03_texture',
+                'Light': '04_light',
+                'Rig': '05_rig'
+            }
+        return astDept
 
 
 def bsw_getAllAssetNames(astType):
@@ -70,6 +49,7 @@ def bsw_getAllAssetNames(astType):
     Returns:
             all asset names.
     """
+    assetType = ProjectNamingInputs().assetType
     assetDirectory = '{basePath}/{projectName}/01_pre/{assetType}/'.format(basePath=basePath,
                                                                            projectName=projectName,
                                                                            assetType=assetType[astType])
@@ -87,6 +67,7 @@ def bsw_getAssetDeptDirs(astType, astName):
     Returns:
             selected asset all department directory (dict).
     """
+    assetType = ProjectNamingInputs().assetType
     allDeptDirs = dict()
     baseAssetDir = '{basePath}/{projectName}/01_pre/{assetType}/{assetName}/'.format(basePath=basePath,
                                                                                      projectName=projectName,
@@ -287,6 +268,6 @@ def bsw_getOnlyFinalFileOfDept(astType, astDept, astName):
         return False
 
 
-# if __name__ == '__main__':
-#     a = bsw_getOnlyFinalFileOfDept('Character', 'Model', 'dodo')
-#     print a
+if __name__ == '__main__':
+    a = bsw_getOnlyFinalFileOfDept('Character', 'Model', 'dodo')
+    print a
