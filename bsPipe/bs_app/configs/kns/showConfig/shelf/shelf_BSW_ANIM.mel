@@ -1,0 +1,86 @@
+global proc shelf_BSW_ANIM () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "shot_builder" 
+        -enableBackground 0
+        -align "center" 
+        -label "shot_builder" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotBuilder.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotBuilder.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_anim import winbs_shotBuilder\nreload(winbs_shotBuilder)\nwinbs_shotBuilder.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from bsPipe.bs_ui.bsui_anim import winbs_shotBrowser\nreload(winbs_shotBrowser)\n\nwinbs_shotBrowser.main()\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "from bsPipe.bs_ui.bsui_anim import winbs_shotBrowser\nreload(winb..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotOpen.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotOpen.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_anim import winbs_shotBrowser\nreload(winbs_shotBrowser)\n\nwinbs_shotBrowser.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from bsPipe.bs_ui.bsui_anim import winbs_shotManager\nreload(winbs_shotManager)\nwinbs_shotManager.main()\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "from bsPipe.bs_ui.bsui_anim import winbs_shotManager\nreload(winb..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotManager.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotManager.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_anim import winbs_shotManager\nreload(winbs_shotManager)\nwinbs_shotManager.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 

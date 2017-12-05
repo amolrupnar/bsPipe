@@ -1,0 +1,4 @@
+print "script initialized..";
+python("import startupCmd\nreload(startupCmd)\nstartupCmd.runInitialStartup()");
+print "script run done";
+

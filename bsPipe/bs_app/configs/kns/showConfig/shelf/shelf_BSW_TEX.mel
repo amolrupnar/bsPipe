@@ -1,0 +1,112 @@
+global proc shelf_BSW_TEX () {
+    global string $gBuffStr;
+    global string $gBuffStr0;
+    global string $gBuffStr1;
+
+
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "assetManager" 
+        -enableBackground 0
+        -align "center" 
+        -label "assetManager" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetManager.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetManager.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_asset import winbs_assetManager\nreload(winbs_assetManager)\nwinbs_assetManager.main()\n\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "create texture base" 
+        -enableBackground 0
+        -align "center" 
+        -label "create texture base" 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.2 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_CreateTexBase.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_CreateTexBase.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_asset import winbs_createTexture\nreload(winbs_createTexture)\nwinbs_createTexture.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from bsPipe.bs_ui.bsui_texture import winbs_textureManager\nreload(winbs_textureManager)\n\nwinbs_textureManager.main()\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "from bsPipe.bs_ui.bsui_texture import winbs_textureManager\nreloa..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_TextureManager.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_TextureManager.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_texture import winbs_textureManager\nreload(winbs_textureManager)\n\nwinbs_textureManager.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from bsPipe.bs_ui.bsui_asset import winbs_assetPublish\nreload(winbs_assetPublish)\n\nwinbs_assetPublish.main()\n" 
+        -enableBackground 0
+        -align "center" 
+        -label "from bsPipe.bs_ui.bsui_asset import winbs_assetPublish\nreload(wi..." 
+        -labelOffset 0
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.25 
+        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetPublish.png" 
+        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetPublish.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from bsPipe.bs_ui.bsui_asset import winbs_assetPublish\nreload(winbs_assetPublish)\n\nwinbs_assetPublish.main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+
+} 
