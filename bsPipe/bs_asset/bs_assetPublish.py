@@ -1,11 +1,11 @@
 import pymel.core as pm
 import os
 
-from bsPipe.bs_core import bs_screenshot
+# from bsPipe.bs_core import bs_screenshot
 from bsPipe.bs_core import bs_pathGenerator
 from bsPipe.bs_ui import bs_qui
 
-reload(bs_screenshot)
+# reload(bs_screenshot)
 reload(bs_pathGenerator)
 reload(bs_qui)
 
@@ -18,7 +18,7 @@ def bs_publishCurrentAsset():
             mainFilePath And versionFilePath.
     """
     # get environments.
-    projectName = bs_pathGenerator.bs_getEnvDetails()['projectName']
+    projectName = bs_pathGenerator.bs_getEnv()['projectName']
     assetCategory, assetType, assetName, uid = bs_pathGenerator.bs_getAssetDetails()
     if assetCategory == 'Not Exist' or assetType == 'Not Exist' or assetName == 'Not Exist' or uid == 'Not Exist':
         bs_qui.bs_displayMessage('error', 'No Asset To Publish.....')
@@ -40,7 +40,6 @@ def bs_publishCurrentAsset():
             filePath = verDir + fileName
     # get screenshot.
     imageFilePath = verDir + 'snapshot/' + fileName[:-3] + '.iff'
-    bs_screenshot.bs_getScreenShot(imageFilePath)
     # save version File.
     pm.saveAs(filePath)
     # save main File.

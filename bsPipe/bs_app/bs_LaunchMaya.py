@@ -61,13 +61,3 @@ def launch_app():
 
 if __name__ == '__main__':
     launch_app()
-    # mayaApp = setEnvPaths('kns')
-    # print os.environ['BSW_PROJECT_SHORT']
-    # print os.environ['BSW_PROJECT_NAME']
-    # print os.environ['BSW_PROJECT_DIR']
-    # print os.environ['BSW_PROGRAM_DIR']
-    # print os.environ['MAYA_APP_PATH']
-    # print os.environ['XBMLANGPATH']
-    # print os.environ['MAYA_SHELF_PATH']
-    # print os.environ['MAYA_SCRIPT_PATH']
-    # print os.environ['PYTHONPATH']

@@ -116,7 +116,10 @@ def bs_createRigBase(assetName, assetGrade, assetType, episode=None):
     # get environments.
     serverPath = bs_pathGenerator.bs_getEnv()['projectDir']
     # get model directory.
-    modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName)
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName, episode=episode)
+    else:
+        modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName)
     # create path using environment variable.
     modelFile = modelFile.replace(serverPath, '$BSW_PROJECT_DIR')
     print modelFile
@@ -154,7 +157,10 @@ def bs_createRigBase(assetName, assetGrade, assetType, episode=None):
     # parent referenced model top group in rig group.
     pm.parent('geo', topGrp)
     pm.select(topGrp, r=True)
-    bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName, episode=episode)
+    else:
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
     return topGrp
 
 
@@ -183,7 +189,10 @@ def bs_createTextureBase(assetName, assetGrade, assetType, episode=None):
     # get environments.
     serverPath = bs_pathGenerator.bs_getEnv()['projectDir']
     # get model directory.
-    modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName)
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName, episode=episode)
+    else:
+        modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName)
     # create path using environment variable.
     modelFile = modelFile.replace(serverPath, '$BSW_PROJECT_DIR')
     bs_reference.bs_createReference(modelFile, prefixStyle='withoutNamespace', prefixName='')

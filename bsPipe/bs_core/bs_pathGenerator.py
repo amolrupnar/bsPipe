@@ -1,6 +1,4 @@
 import os
-# import sys
-# from pymel import core as pm
 
 import project_pathGen
 
@@ -30,47 +28,56 @@ def bs_getEnv():
     return bsw_getEnv
 
 
-def bs_createAssetDirectories(astType, astName):
+def bs_createAssetDirectories(astType, astName, episode=None):
     """
     @ create asset directories of all department.
     Args:
         astType (str): asset Type Character, Prop, Set, SetElement, Vehicle.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
             bool.
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_createAssetDirectories(astType, astName, episode=episode)
     return project_pathGen.bsw_createAssetDirectories(astType, astName)
 
 
-def bs_getAllAssetNames(astType):
+def bs_getAllAssetNames(astType, episode=None):
     """
     @ just replace function with project path generator.
     @ get all asset names of asset types from directory.
     Args:
         astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+        episode (str): episode number.
 
     Returns:
             all asset names.
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_getAllAssetNames(astType, episode=episode)
     return project_pathGen.bsw_getAllAssetNames(astType)
 
 
-def bs_getAssetDeptDirs(astType, astName):
+def bs_getAssetDeptDirs(astType, astName, episode=None):
     """
     @ just replace function with project path generator.
     @ get passed asset all department directories.
     Args:
         astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
         astName (str): asset name.
+        episode (str): episode number.
 
     Returns:
             selected asset all department directory (dict).
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_getAssetDeptDirs(astType, astName, episode=episode)
     return project_pathGen.bsw_getAssetDeptDirs(astType, astName)
 
 
-def bs_getAssetFileAndVersions(astType, astDept, astName):
+def bs_getAssetFileAndVersions(astType, astDept, astName, episode=None):
     """
     @ getting input from passed arguments and return a two dictionaries.
     @ each dictionary having keys(file name used as a key).
@@ -80,23 +87,29 @@ def bs_getAssetFileAndVersions(astType, astDept, astName):
         astType (str): asset Type Character, Prop, Set, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
             mainFiles and version files (Both return type is dict.)
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_getAssetFileAndVersions(astType, astDept, astName, episode=episode)
     return project_pathGen.bsw_getAssetFileAndVersions(astType, astDept, astName)
 
 
-def bs_getValidDeptAssetNames(astType, astDept):
+def bs_getValidDeptAssetNames(astType, astDept, episode=None):
     """
     @ return all department wise asset return name if file is exist.
     Args:
         astType (str): asset type for example('Character', 'Prop', 'Set', 'Vehicle').
         astDept (str): asset department like ('Design', 'Model', 'Texture', 'Rig', 'Light' or etc.)
+        episode (str): episode number.
 
     Returns:
             department wise asset names list.
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_getValidDeptAssetNames(astType, astDept, episode=episode)
     return project_pathGen.bsw_getValidDeptAssetNames(astType, astDept)
 
 
@@ -135,17 +148,20 @@ def bs_getCurrentAssetMainFileName():
     return project_pathGen.bsw_getCurrentAssetMainFileName()
 
 
-def bs_getOnlyFinalFileOfDept(astType, astDept, astName):
+def bs_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
     """
     @ get only final file of required department.
     Args:
         astType (str): asset Type Character, Prop, Set, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
 
     """
+    if bs_getEnv()['projectType'] == 'series':
+        return project_pathGen.bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=episode)
     return project_pathGen.bsw_getOnlyFinalFileOfDept(astType, astDept, astName)
 
 # def bs_animFilePath(epi, seq, shot):

@@ -8,12 +8,14 @@ os.environ['BSW_PROJECT_DIR'] = 'D:/zTempDir'
 os.environ['BSW_PROGRAM_DIR'] = 'D:/'
 os.environ['BSW_PROJECT_TYPE'] = 'series'
 
-projectShortName = os.environ['BSW_PROJECT_SHORT']
-projectName = os.environ['BSW_PROJECT_NAME']
-basePath = os.environ['BSW_PROJECT_DIR']
-
 
 class ProjectNamingInputs(object):
+    def __init__(self):
+        self.projectShortName = os.environ['BSW_PROJECT_SHORT']
+        self.projectName = os.environ['BSW_PROJECT_NAME']
+        self.basePath = os.environ['BSW_PROJECT_DIR']
+        self.projectType = os.environ['BSW_PROJECT_TYPE']
+
     @property
     def assetType(self):
         astType = \
@@ -40,39 +42,54 @@ class ProjectNamingInputs(object):
         return astDept
 
 
-def bsw_getAllAssetNames(astType):
+def bsw_getAllAssetNames(astType, episode=None):
     """
     @ get all asset names of asset types from directory.
     Args:
         astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+        episode (str): episode number.
 
     Returns:
             all asset names.
     """
+    # get basic inputs.
+    basePath = ProjectNamingInputs().basePath
+    projectName = ProjectNamingInputs().projectName
     assetType = ProjectNamingInputs().assetType
-    assetDirectory = '{basePath}/{projectName}/01_pre/{assetType}/'.format(basePath=basePath,
-                                                                           projectName=projectName,
-                                                                           assetType=assetType[astType])
-    allAssetNames = [each for each in os.listdir(assetDirectory) if os.path.isdir(os.path.join(assetDirectory, each))]
-    return allAssetNames
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        assetDirectory = '{basePath}/{projectName}/01_pre/{assetType}/{episode}/' \
+            .format(basePath=basePath, projectName=projectName, assetType=assetType[astType], episode=episode)
+    else:
+        assetDirectory = '{basePath}/{projectName}/01_pre/{assetType}/' \
+            .format(basePath=basePath, projectName=projectName, assetType=assetType[astType])
+    allAstNames = [each for each in os.listdir(assetDirectory) if os.path.isdir(os.path.join(assetDirectory, each))]
+    return allAstNames
 
 
-def bsw_getAssetDeptDirs(astType, astName):
+def bsw_getAssetDeptDirs(astType, astName, episode=None):
     """
     @ get template of passed asset all department directory paths.
     Args:
         astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
         astName (str): asset name.
+        episode (str): episode number.
 
     Returns:
             selected asset all department directory (dict).
     """
+    basePath = ProjectNamingInputs().basePath
+    projName = ProjectNamingInputs().projectName
     assetType = ProjectNamingInputs().assetType
+    projectType = ProjectNamingInputs().projectType
     allDeptDirs = dict()
-    baseAssetDir = '{basePath}/{projectName}/01_pre/{assetType}/{assetName}/'.format(basePath=basePath,
-                                                                                     projectName=projectName,
-                                                                                     assetType=assetType[astType],
-                                                                                     assetName=astName)
+    if projectType == 'series':
+        baseAssetDir = '{basePath}/{projectName}/01_pre/{assetType}/{episode}/{assetName}/' \
+            .format(basePath=basePath, projectName=projName, assetType=assetType[astType],
+                    assetName=astName, episode=episode)
+    else:
+        baseAssetDir = '{basePath}/{projectName}/01_pre/{assetType}/{assetName}/' \
+            .format(basePath=basePath, projectName=projName, assetType=assetType[astType], assetName=astName)
     allDeptDirs['Design'] = baseAssetDir + '01_design'
     allDeptDirs['DesignVersion'] = baseAssetDir + '01_design/version/'
     allDeptDirs['Model'] = baseAssetDir + '02_model/'
@@ -91,41 +108,55 @@ def bsw_getAssetDeptDirs(astType, astName):
     return allDeptDirs
 
 
-def bsw_createAssetDirectories(astType, astName):
+def bsw_createAssetDirectories(astType, astName, episode=None):
     """
     @ create asset directories of all department.
     Args:
         astType (str): asset Type Character, Prop, Set, SetElement, Vehicle.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
             bool.
     """
     # get all asset department directory template.
-    assetDeptDir = bsw_getAssetDeptDirs(astType, astName)
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        assetDeptDir = bsw_getAssetDeptDirs(astType, astName, episode=episode)
+    else:
+        assetDeptDir = bsw_getAssetDeptDirs(astType, astName)
     for each in assetDeptDir.keys():
         if not os.path.exists(assetDeptDir[each]):
             os.makedirs(assetDeptDir[each])
     return True
 
 
-def bsw_getAssetFileAndVersions(astType, astDept, astName):
+def bsw_getAssetFileAndVersions(astType, astDept, astName, episode=None):
     """
     @ get main file and version files, and create directory if not exist.
     Args:
         astType (str): asset Type Character, Prop, Set, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
             mainFiles and version file paths (list, list).
     """
-    assetDeptDir = bsw_getAssetDeptDirs(astType, astName)
+    projectShortName = ProjectNamingInputs().projectShortName
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        assetDeptDir = bsw_getAssetDeptDirs(astType, astName, episode=episode)
+    else:
+        assetDeptDir = bsw_getAssetDeptDirs(astType, astName)
     mainAssetFile = list()
     versionFiles = list()
     # get main Files.
     # make directory if not exist.
-    bsw_createAssetDirectories(astType, astName)
+    if projectType == 'series':
+        bsw_createAssetDirectories(astType, astName, episode)
+    else:
+        bsw_createAssetDirectories(astType, astName)
     # add all main files in list main file is need only one but this is wrong.
     for each in os.listdir(assetDeptDir[astDept]):
         if each.startswith(projectShortName + '_') and each.endswith('.ma'):
@@ -139,22 +170,31 @@ def bsw_getAssetFileAndVersions(astType, astDept, astName):
     return mainAssetFile, versionFiles
 
 
-def bsw_getValidDeptAssetNames(astType, astDept):
+def bsw_getValidDeptAssetNames(astType, astDept, episode=None):
     """
     @ return all department wise asset return name if file is exist.
     Args:
         astType (str): asset type for example('Character', 'Prop', 'Set', 'Vehicle').
         astDept (str): asset department like ('Design', 'Model', 'Texture', 'Rig', 'Light' or etc.)
+        episode (str): episode number.
 
     Returns:
             department wise asset names list.
     """
     # get all asset names.
-    assetNames = bsw_getAllAssetNames(astType)
+    projectShortName = ProjectNamingInputs().projectShortName
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        assetNames = bsw_getAllAssetNames(astType, episode=episode)
+    else:
+        assetNames = bsw_getAllAssetNames(astType)
     validDeptAsset = list()
     # go to each asset directory and check there is any file with our project naming structure is exist or not.
     for eachName in assetNames:
-        assetDeptDir = bsw_getAssetDeptDirs(astType, eachName)[astDept]
+        if projectType == 'series':
+            assetDeptDir = bsw_getAssetDeptDirs(astType, eachName, episode=episode)[astDept]
+        else:
+            assetDeptDir = bsw_getAssetDeptDirs(astType, eachName)[astDept]
         # return if directory is not found.
         if not os.path.exists(assetDeptDir):
             continue
@@ -174,6 +214,7 @@ def bsw_versionUpPath(versionDir):
     Returns:
             newVersionFile Name.
     """
+    projectShortName = ProjectNamingInputs().projectShortName
     if not os.path.exists(versionDir):
         return False
     # get all files from version directory.
@@ -233,6 +274,7 @@ def bsw_getCurrentAssetMainFileName():
     Returns:
             main file name (str).
     """
+    projectShortName = ProjectNamingInputs().projectShortName
     # get asset UID from the kns_getAssetDetails function (second last return is assetUID).
     assetUID = bsw_getAssetDetails()[-2]
     if os.environ['BSW_PROJECT_TYPE'] == 'series':
@@ -243,20 +285,26 @@ def bsw_getCurrentAssetMainFileName():
                assetUID.split('_')[-1] + '.ma'
 
 
-def bsw_getOnlyFinalFileOfDept(astType, astDept, astName):
+def bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
     """
     @ get only final file of required department.
     Args:
         astType (str): asset Type Character, Prop, Set, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
+        episode (str): episode number.
 
     Returns:
-
+            filePath if exist else return False.
     """
+    projectShortName = ProjectNamingInputs().projectShortName
     astTypShortCode = {'Character': 'ch', 'Prop': 'pr', 'Set': 'bg', 'Vehicle': 'vh', 'SetElement': 'se'}
     astDeptShortCode = {'Model': 'mod', 'Rig': 'rig', 'Texture': 'tex', 'Light': 'lit'}
-    mainFiles, versionFiles = bsw_getAssetFileAndVersions(astType, astDept, astName)
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        mainFiles, versionFiles = bsw_getAssetFileAndVersions(astType, astDept, astName, episode)
+    else:
+        mainFiles, versionFiles = bsw_getAssetFileAndVersions(astType, astDept, astName)
     for each in mainFiles:
         fileDir = os.path.dirname(each)
         splitFile = each.split('/')[-1]
@@ -269,5 +317,5 @@ def bsw_getOnlyFinalFileOfDept(astType, astDept, astName):
 
 
 if __name__ == '__main__':
-    a = bsw_getOnlyFinalFileOfDept('Character', 'Model', 'dodo')
+    a = bsw_getOnlyFinalFileOfDept('Character', 'Model', 'dodo', episode='EP002')
     print a
