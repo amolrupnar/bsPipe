@@ -1,48 +1,52 @@
 import pymel.core as pm
-import os
+import shutil
 
-# from bsPipe.bs_core import bs_screenshot
-from bsPipe.bs_core import bs_pathGenerator
+from bsPipe.bs_core import bs_pathGenerator, bs_screenshot
 from bsPipe.bs_ui import bs_qui
 
-# reload(bs_screenshot)
 reload(bs_pathGenerator)
+reload(bs_screenshot)
 reload(bs_qui)
 
 
 def bs_publishCurrentAsset():
     """
     @ publish current opened asset.
-    @ get details from top group and find path and then take a snapshot and saveAs main file and Version File.
     Returns:
             mainFilePath And versionFilePath.
     """
     # get environments.
-    projectName = bs_pathGenerator.bs_getEnv()['projectName']
-    assetCategory, assetType, assetName, uid = bs_pathGenerator.bs_getAssetDetails()
-    if assetCategory == 'Not Exist' or assetType == 'Not Exist' or assetName == 'Not Exist' or uid == 'Not Exist':
-        bs_qui.bs_displayMessage('error', 'No Asset To Publish.....')
+    projectType = bs_pathGenerator.bs_getEnv()['projectType']
+    assetDept, assetType, assetName, uid, episode = bs_pathGenerator.bs_getAssetDetails()
+    if assetDept == 'Not Exist' or assetType == 'Not Exist' or assetName == 'Not Exist' or uid == 'Not Exist':
+        bs_qui.bs_displayMessage('error', 'Asset not found To Publish.....')
         return False
-    mainDir = bs_pathGenerator.bs_getAssetDir(astName=assetName, astType=assetType, astDept=assetCategory)['dept']
-    verDir = bs_pathGenerator.bs_getAssetDir(astName=assetName, astType=assetType, astDept=assetCategory)['ver']
-    if not os.path.isdir(verDir):
-        os.makedirs(verDir)
-        fileName = projectName.lower() + '_' + uid.split('_')[1] + '_' + uid.split('_')[2] + '_' + uid.split('_')[
-            4] + '_' + uid.split('_')[3] + '_v001.ma'
-        filePath = verDir + fileName
+    # get asset directories and create directories if not exist.
+    if projectType == 'series':
+        mainDir = bs_pathGenerator.bs_getAssetDeptDirs(assetType, assetName, episode=episode)[assetDept]
+        verDir = bs_pathGenerator.bs_getAssetDeptDirs(assetType, assetName, episode=episode)[assetDept + 'Version']
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName, episode=episode)
     else:
-        fileName = bs_pathGenerator.bs_versionUpPath(verDir)
-        if fileName:
-            filePath = verDir + fileName
-        else:
-            fileName = projectName.lower() + '_' + uid.split('_')[1] + '_' + uid.split('_')[2] + '_' + uid.split('_')[
-                4] + '_' + uid.split('_')[3] + '_v001.ma'
-            filePath = verDir + fileName
-    # get screenshot.
-    imageFilePath = verDir + 'snapshot/' + fileName[:-3] + '.iff'
+        mainDir = bs_pathGenerator.bs_getAssetDeptDirs(assetType, assetName)[assetDept]
+        verDir = bs_pathGenerator.bs_getAssetDeptDirs(assetType, assetName)[assetDept + 'Version']
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
+    # get file paths to save the file.
+    mainFilePath = mainDir + bs_pathGenerator.bs_getCurrentAssetMainFileName()
+    versionFileName = bs_pathGenerator.bs_versionUpPath(verDir)
+    # create new version file name if no version exist.
+    if not versionFileName:
+        versionFileName = bs_pathGenerator.bs_getCurrentAssetMainFileName()[:-3] + '_v001.ma'
+    versionFilePath = verDir + versionFileName
+    # get version screenshot.
+    imageFilePath = verDir + 'snapshot/' + versionFileName[:-3] + '.jpg'
+    bs_screenshot.bs_getScreenShot(imageFilePath)
     # save version File.
-    pm.saveAs(filePath)
-    # save main File.
-    pm.saveAs(mainDir + fileName[:-8] + '.ma')
+    pm.saveAs(versionFilePath)
+    # copy main version file and save as main File if fail then save manually.
+    try:
+        shutil.copy2(versionFilePath, mainFilePath)
+    except OSError:
+        pm.saveAs(mainFilePath)
+    # print message.
     bs_qui.bs_displayMessage('success', 'Asset Publish Successfully...')
-    return mainDir + fileName[:-8] + '.ma', filePath
+    return mainFilePath, versionFilePath

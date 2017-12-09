@@ -86,7 +86,10 @@ def bs_createModelBase(topGroup, assetName, assetGrade, assetType, episode=None,
     pm.setAttr(topGrp + '.assetUID', uid)
     pm.setAttr(topGrp + '.assetUID', l=True)
     pm.select(topGrp, r=True)
-    bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName, episode=episode)
+    else:
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
     bs_qui.bs_displayMessage('success', 'Asset Created Successfully....')
     return topGrp
 
@@ -122,7 +125,6 @@ def bs_createRigBase(assetName, assetGrade, assetType, episode=None):
         modelFile = bs_pathGenerator.bs_getOnlyFinalFileOfDept(assetType, 'Model', assetName)
     # create path using environment variable.
     modelFile = modelFile.replace(serverPath, '$BSW_PROJECT_DIR')
-    print modelFile
     bs_reference.bs_createReference(modelFile, prefixStyle='withoutNamespace', prefixName='')
     # create Rig Group.
     topGrp = pm.createNode('transform', n='rig_grp', ss=True)
@@ -228,6 +230,9 @@ def bs_createTextureBase(assetName, assetGrade, assetType, episode=None):
     pm.setAttr(topGrp + '.assetUID', l=True)
     # parent referenced model top group in texture group.
     pm.parent('geo', topGrp)
-    bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName, episode=episode)
+    else:
+        bs_pathGenerator.bs_createAssetDirectories(assetType, assetName)
     bs_qui.bs_displayMessage('success', 'asset Created success and created sourceimages directory')
     return topGrp

@@ -317,5 +317,5 @@ def bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
 
 
 if __name__ == '__main__':
-    a = bsw_getOnlyFinalFileOfDept('Character', 'Model', 'dodo', episode='EP002')
+    a = bsw_versionUpPath(r'S:\kicko_speedo\01_pre\01_char\EP000\dodo\02_model\version')
     print a
