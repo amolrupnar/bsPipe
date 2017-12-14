@@ -64,3 +64,19 @@ def bs_getComputerName():
             system Name (str).
     """
     return "%s@%s" % (getpass.getuser(), platform.node())
+
+
+def bs_getFileOwner(path):
+    """
+    @ get file owner name
+    Args:
+        path (str): get file owner name.
+
+    Returns:
+            file owner name.
+    """
+    # TODO: get file owner name once server installation is done.
+    if path:
+        return 'NULL'
+    else:
+        return 'NULL'

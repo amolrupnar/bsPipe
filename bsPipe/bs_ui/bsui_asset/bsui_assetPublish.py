@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'S:/bsw_programation/01_maya/Pipeline/bsPipe/bsPipe/bs_ui/bsui_asset/bsui_assetPublish.ui'
+# Form implementation generated from reading ui file 'D:/bsw_programation/01_maya/Pipeline/bsPipe/bsPipe/bs_ui/bsui_asset/bsui_assetPublish.ui'
 #
-# Created: Sat Aug 26 16:46:25 2017
+# Created: Thu Dec 14 17:34:44 2017
 #      by: pyside-uic 0.2.14 running on PySide 1.2.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_AssetPublishMainWindow(object):
     def setupUi(self, AssetPublishMainWindow):
         AssetPublishMainWindow.setObjectName("AssetPublishMainWindow")
-        AssetPublishMainWindow.resize(778, 519)
+        AssetPublishMainWindow.resize(879, 550)
         self.centralwidget = QtGui.QWidget(AssetPublishMainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtGui.QGridLayout(self.centralwidget)
@@ -43,10 +43,6 @@ class Ui_AssetPublishMainWindow(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 0, 1, 1, 1)
-        self.label_5 = QtGui.QLabel(self.centralwidget)
-        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.gridLayout.addWidget(self.label_5, 0, 2, 1, 1)
         self.bsap_category_lbl = QtGui.QLabel(self.centralwidget)
         self.bsap_category_lbl.setText("")
         self.bsap_category_lbl.setAlignment(QtCore.Qt.AlignCenter)
@@ -57,17 +53,30 @@ class Ui_AssetPublishMainWindow(object):
         self.bsap_assetType_lbl.setAlignment(QtCore.Qt.AlignCenter)
         self.bsap_assetType_lbl.setObjectName("bsap_assetType_lbl")
         self.gridLayout.addWidget(self.bsap_assetType_lbl, 1, 1, 1, 1)
+        self.label_5 = QtGui.QLabel(self.centralwidget)
+        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout.addWidget(self.label_5, 0, 2, 1, 1)
         self.bsap_assetName_lbl = QtGui.QLabel(self.centralwidget)
         self.bsap_assetName_lbl.setText("")
         self.bsap_assetName_lbl.setAlignment(QtCore.Qt.AlignCenter)
         self.bsap_assetName_lbl.setObjectName("bsap_assetName_lbl")
         self.gridLayout.addWidget(self.bsap_assetName_lbl, 1, 2, 1, 1)
+        self.bsap_episodeTag_lbl = QtGui.QLabel(self.centralwidget)
+        self.bsap_episodeTag_lbl.setAlignment(QtCore.Qt.AlignCenter)
+        self.bsap_episodeTag_lbl.setObjectName("bsap_episodeTag_lbl")
+        self.gridLayout.addWidget(self.bsap_episodeTag_lbl, 0, 3, 1, 1)
+        self.bsap_episode_lbl = QtGui.QLabel(self.centralwidget)
+        self.bsap_episode_lbl.setText("")
+        self.bsap_episode_lbl.setAlignment(QtCore.Qt.AlignCenter)
+        self.bsap_episode_lbl.setObjectName("bsap_episode_lbl")
+        self.gridLayout.addWidget(self.bsap_episode_lbl, 1, 3, 1, 1)
         self.gridLayout_2.addLayout(self.gridLayout, 1, 0, 1, 1)
         self.line = QtGui.QFrame(self.centralwidget)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.gridLayout_2.addWidget(self.line, 2, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.line, 2, 0, 1, 2)
         self.label_3 = QtGui.QLabel(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -81,14 +90,14 @@ class Ui_AssetPublishMainWindow(object):
         self.splitter = QtGui.QSplitter(self.centralwidget)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
-        self.textEdit = QtGui.QTextEdit(self.splitter)
+        self.bsap_comment_TE = QtGui.QTextEdit(self.splitter)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(80)
-        sizePolicy.setHeightForWidth(self.textEdit.sizePolicy().hasHeightForWidth())
-        self.textEdit.setSizePolicy(sizePolicy)
-        self.textEdit.setMaximumSize(QtCore.QSize(16777215, 200))
-        self.textEdit.setObjectName("textEdit")
+        sizePolicy.setHeightForWidth(self.bsap_comment_TE.sizePolicy().hasHeightForWidth())
+        self.bsap_comment_TE.setSizePolicy(sizePolicy)
+        self.bsap_comment_TE.setMaximumSize(QtCore.QSize(16777215, 200))
+        self.bsap_comment_TE.setObjectName("bsap_comment_TE")
         self.layoutWidget = QtGui.QWidget(self.splitter)
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.layoutWidget)
@@ -113,7 +122,7 @@ class Ui_AssetPublishMainWindow(object):
         item = QtGui.QTableWidgetItem()
         self.bsap_prevVers_tableWidget.setHorizontalHeaderItem(4, item)
         self.verticalLayout.addWidget(self.bsap_prevVers_tableWidget)
-        self.gridLayout_2.addWidget(self.splitter, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.splitter, 4, 0, 1, 2)
         self.bsap_publish_pb = QtGui.QPushButton(self.centralwidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -122,10 +131,10 @@ class Ui_AssetPublishMainWindow(object):
         self.bsap_publish_pb.setSizePolicy(sizePolicy)
         self.bsap_publish_pb.setMinimumSize(QtCore.QSize(0, 40))
         self.bsap_publish_pb.setObjectName("bsap_publish_pb")
-        self.gridLayout_2.addWidget(self.bsap_publish_pb, 5, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.bsap_publish_pb, 5, 0, 1, 2)
         AssetPublishMainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(AssetPublishMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 778, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 879, 21))
         self.menubar.setObjectName("menubar")
         self.menuMenu = QtGui.QMenu(self.menubar)
         self.menuMenu.setObjectName("menuMenu")
@@ -155,8 +164,9 @@ class Ui_AssetPublishMainWindow(object):
         self.label.setText(QtGui.QApplication.translate("AssetPublishMainWindow", "Asset Department", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("AssetPublishMainWindow", "Asset Type", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("AssetPublishMainWindow", "Asset Name", None, QtGui.QApplication.UnicodeUTF8))
+        self.bsap_episodeTag_lbl.setText(QtGui.QApplication.translate("AssetPublishMainWindow", "Episode", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("AssetPublishMainWindow", "Comment", None, QtGui.QApplication.UnicodeUTF8))
-        self.textEdit.setHtml(QtGui.QApplication.translate("AssetPublishMainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.bsap_comment_TE.setHtml(QtGui.QApplication.translate("AssetPublishMainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"

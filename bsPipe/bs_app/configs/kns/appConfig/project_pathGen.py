@@ -166,7 +166,7 @@ def bsw_getAssetFileAndVersions(astType, astDept, astName, episode=None):
     # add all version files in list.
     for each in os.listdir(assetDeptDir[astDept + 'Version']):
         if each.startswith(projectShortName + '_') and each.endswith('.ma') and each[-8:-6] == '_v':
-            versionFiles.append(os.path.join(assetDeptDir[astDept], each))
+            versionFiles.append(os.path.join(assetDeptDir[astDept + 'Version'], each))
     return mainAssetFile, versionFiles
 
 
@@ -314,8 +314,3 @@ def bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
             return fileDir + '/' + splitFile
     else:
         return False
-
-
-if __name__ == '__main__':
-    a = bsw_versionUpPath(r'S:\kicko_speedo\01_pre\01_char\EP000\dodo\02_model\version')
-    print a
