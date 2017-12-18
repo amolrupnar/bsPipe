@@ -42,6 +42,28 @@ class ProjectNamingInputs(object):
         return astDept
 
 
+def bsw_getAllAssetEpisodes(astType):
+    """
+    @ get all episodes in selected asset type, and if project type is not series then return None.
+    Args:
+        astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+
+    Returns:
+            all asset episode numbers (list) if project type is not series then return None.
+    """
+    # get basic inputs.
+    basePath = ProjectNamingInputs().basePath
+    projectName = ProjectNamingInputs().projectName
+    assetType = ProjectNamingInputs().assetType
+    projectType = ProjectNamingInputs().projectType
+    if projectType == 'series':
+        episodeDir = '{basePath}/{projectName}/01_pre/{assetType}/' \
+            .format(basePath=basePath, projectName=projectName, assetType=assetType[astType])
+        return [each for each in os.listdir(episodeDir) if os.path.isdir(os.path.join(episodeDir, each))]
+    else:
+        return None
+
+
 def bsw_getAllAssetNames(astType, episode=None):
     """
     @ get all asset names of asset types from directory.
@@ -63,7 +85,11 @@ def bsw_getAllAssetNames(astType, episode=None):
     else:
         assetDirectory = '{basePath}/{projectName}/01_pre/{assetType}/' \
             .format(basePath=basePath, projectName=projectName, assetType=assetType[astType])
-    allAstNames = [each for each in os.listdir(assetDirectory) if os.path.isdir(os.path.join(assetDirectory, each))]
+    # if asset directory is not found then return message.
+    if os.path.exists(assetDirectory):
+        allAstNames = [each for each in os.listdir(assetDirectory) if os.path.isdir(os.path.join(assetDirectory, each))]
+    else:
+        allAstNames = ['asset is not found']
     return allAstNames
 
 
@@ -135,7 +161,7 @@ def bsw_getAssetFileAndVersions(astType, astDept, astName, episode=None):
     """
     @ get main file and version files, and create directory if not exist.
     Args:
-        astType (str): asset Type Character, Prop, Set, Vehicle.
+        astType (str): asset Type Character, Prop, Set, SetElement, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
         episode (str): episode number.
@@ -314,3 +340,34 @@ def bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
             return fileDir + '/' + splitFile
     else:
         return False
+
+
+def bsw_getAssetPathFromFileName(fileName):
+    """
+    @ get asset dir from file name.
+    Args:
+        fileName (str): fileName
+
+    Returns:
+            filePath(str).
+    """
+    projectType = ProjectNamingInputs().projectType
+    assetType = {'ch': 'Character', 'pr': 'Prop', 'bg': 'Set', 'vh': 'Vehicle', 'se': 'SetElement'}
+    assetDept = {'mod': 'Model', 'tex': 'Texture', 'rig': 'Rig', 'lit': 'Light'}
+    astType = fileName.split('_')[1]
+    astName = fileName.split('_')[2]
+    versionFile = False
+    if len(fileName.split('_')) == 6:
+        versionFile = True
+    if projectType == 'series':
+        episode = fileName.split('_')[3]
+        # use 3 digit after splitting because main file dept has no "_" after dept.
+        astDept = fileName.split('_')[4][:3]
+        if versionFile:
+            return bsw_getAssetDeptDirs(assetType[astType], astName, episode=episode)[assetDept[astDept] + 'Version']
+        return bsw_getAssetDeptDirs(assetType[astType], astName, episode=episode)[assetDept[astDept]]
+    else:
+        astDept = fileName.split('_')[3][:3]
+        if versionFile:
+            return bsw_getAssetDeptDirs(assetType[astType], astName)[assetDept[astDept] + 'Version']
+        return bsw_getAssetDeptDirs(assetType[astType], astName)[assetDept[astDept]]

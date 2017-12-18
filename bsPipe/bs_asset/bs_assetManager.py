@@ -1,36 +1,33 @@
 import os
 import json
 
+from bsPipe.bs_core import bs_pathGenerator
 
-def bs_getAllAssets(project, assetType):
+reload(bs_pathGenerator)
+
+
+def bs_getAllAssets(astType, episode=None):
     """
     @ get asset type and return all asset names.
     Args:
-        project: project name for example 'kns'
-        assetType (str): asset type like ('chars', 'props', 'sets', 'vehicles')
+        astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+        episode (str): episode number.
 
     Returns:
             all asset names from folder structure.
     """
-    # arrange asset type folder structure.
-    assetTypeStructure = {'chars': '01_char', 'props': '02_props', 'sets': '03_set', 'vehicles': '04_vehicle', 'SetElement': '03_set/00_setElement'}
-    appJson = os.path.dirname(os.path.dirname(__file__)) + '/bs_app/configs/' + project + '/appConfig/appSetting.json'
-    # get project root directory path from json.
-    with open(appJson) as config_data:
-        config = json.load(config_data)
-    projectRootPath = config['projectRootPath']
-    assetRootPath = projectRootPath + 'kicko_speedo/01_pre/'
-    return os.listdir(assetRootPath + assetTypeStructure[assetType])
+    if bs_pathGenerator.bs_getEnv()['projectType'] == 'series':
+        return bs_pathGenerator.bs_getAllAssetNames(astType, episode=episode)
+    return bs_pathGenerator.bs_getAllAssetNames(astType)
 
 
-def bs_assetDirPath(project, assetType, assetName, category):
+def bs_assetDirPath(astType, astName, astDept):
     """
     @ return asset directory path.
     Args:
-        project (str): project name (basically get it from environment variable)
-        assetType (str): asset type for example ('char','props' etc)
-        assetName (str): asset name
-        category (str): asset category like (model, texture, rig etc.)
+        astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+        astName (str): asset name
+        astDept (str): asset category like (model, texture, rig etc.)
 
     Returns:
             asset directory path.
@@ -41,7 +38,7 @@ def bs_assetDirPath(project, assetType, assetName, category):
         config = json.load(config_data)
     projectRootPath = config['projectRootPath']
     assetRootPath = projectRootPath + 'kicko_speedo/01_pre/'
-    return assetRootPath + assetType + '/' + assetName + '/' + category
+    return assetRootPath + astType + '/' + astName + '/' + astDept
 
 
 def bs_assetFileAndVersions(project, assetType, assetName, category):

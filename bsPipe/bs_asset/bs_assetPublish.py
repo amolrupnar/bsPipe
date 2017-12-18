@@ -43,36 +43,41 @@ def bs_publishCurrentAsset(comment=None):
     if not versionFileName:
         versionFileName = bs_pathGenerator.bs_getCurrentAssetMainFileName()[:-3] + '_v001.ma'
     versionFilePath = verDir + versionFileName
-    # get version screenshot.
-    imageFilePath = verDir + 'snapshot/' + versionFileName[:-3] + '.jpg'
-    # bs_screenshot.bs_getScreenShot(imageFilePath)
     # save version File.
     pm.saveAs(versionFilePath)
     # copy main version file and save as main File if fail then save manually.
     try:
         shutil.copy2(versionFilePath, mainFilePath)
-    except OSError:
+    except:
         pm.saveAs(mainFilePath)
+    # get version screenshot.
+    imageFilePath = verDir + 'screenshot/' + versionFileName[:-3] + '.jpg'
+    bs_screenshot.bs_getScreenShot(imageFilePath)
+    # copy screenshot for main file.
+    try:
+        shutil.copy2(imageFilePath, imageFilePath[:-9] + '.jpg')
+    except:
+        pass
+
     # add entry in database.
     try:
-        tableName = mainFilePath.split('/')[-1][:-3]
+        tableName = str(mainFilePath.split('/')[-1][:-3])
         # mainFile entries.
-        mainFileName = mainFilePath
+        mainFileName = str(mainFilePath.split('/')[-1])
         mainFileOwner = bs_os.bs_getFileOwner(mainFilePath)
         mainFileSize = bs_os.bs_getFileSize(mainFilePath)
         mainFileTime = bs_os.bs_getFileDateTime(mainFilePath)
         addInfoDB = bs_database.Bs_Database()
-        print tableName
         addInfoDB.bs_databaseAssetPublish(tableName, mainFileName, mainFileOwner, mainFileSize, mainFileTime, comment)
         # version File entries.
-        verFileName = mainFilePath
+        verFileName = str(versionFilePath.split('/')[-1])
         verFileOwner = bs_os.bs_getFileOwner(mainFilePath)
         verFileSize = bs_os.bs_getFileSize(mainFilePath)
         verFileTime = bs_os.bs_getFileDateTime(mainFilePath)
         addInfoDB = bs_database.Bs_Database()
         addInfoDB.bs_databaseAssetPublish(tableName, verFileName, verFileOwner, verFileSize, verFileTime, comment)
-    except RuntimeError:
+        # print message.
+        bs_qui.bs_displayMessage('success', 'Asset Publish Successfully...')
+    except:
         bs_qui.bs_displayMessage('success', 'Asset Publish Successfully... But database is not not connected')
-    # print message.
-    bs_qui.bs_displayMessage('success', 'Asset Publish Successfully...')
     return mainFilePath, versionFilePath

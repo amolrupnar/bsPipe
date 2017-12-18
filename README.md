@@ -1,30 +1,71 @@
-# README #
+# BsPipe #
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
 
-* Quick summary
-Add Some Pipeline Tools.
+* Pipeline tools for Asset creation to asset publish, and shot build to cache publish. 
 * Version
 v-0.1
 
 ### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* copy "bsw_programation" folder in any directory.
+* make project folder.
+* Dependencies (python standard library functions and some add-on site-packages.)
+* Database configuration (MySQL)
+* Deployment instructions will share soon.
 
-### Contribution guidelines ###
+### Folder Structure ###
 
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* if project is series then folder structure is to be like
+* base directory.
+* project folder.
+    * "01_pre"
+        * "00_inputs"
+        * "01_char"
+            * "ep000"
+                * "kicko"
+                    * "01_design"
+                        * "version"
+                    * "02_model"
+                        * "version"
+                    * "03_texture"
+                        * "sourceimages"
+                        * "version"
+                    * "04_light"
+                        * "version"
+                    * "05_rig"
+                        * "version"
+            * "ep001"
+                * "drCrazy"
+                    * "01_design"
+                        * "version"
+                    * "02_model"
+                        * "version"
+                    * "03_texture"
+                        * "sourceimages"
+                        * "version"
+                    * "04_light"
+                        * "version"
+                    * "05_rig"
+                        * "version"
+        * "02_props"
+            * "ep000"
+                * "bottle"
+                    * "01_design"
+                        * "version"
+                    * "02_model"
+                        * "version"
+                    * "03_texture"
+                        * "sourceimages"
+                        * "version"
+                    * "04_light"
+                        * "version"
+                    * "05_rig"
+                        * "version"
+        * "03_set"
+        * "04_setElement"
+        * "05_vehicle"
+    * "02_prod"
+    * "03_post"

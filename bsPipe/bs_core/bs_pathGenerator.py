@@ -5,13 +5,6 @@ import project_pathGen
 reload(project_pathGen)
 
 
-# from bsPipe.bs_core import bs_os
-# from bsPipe.bs_ui import bs_qui
-#
-# reload(bs_os)
-# reload(bs_qui)
-
-
 def bs_getEnv():
     """
     @ get our own selected environ details.
@@ -26,6 +19,18 @@ def bs_getEnv():
     bsw_getEnv['programDir'] = os.environ['BSW_PROGRAM_DIR']
     bsw_getEnv['projectType'] = os.environ['BSW_PROJECT_TYPE']
     return bsw_getEnv
+
+
+def bs_getAllAssetEpisodes(astType):
+    """
+    @ get all episodes in selected asset type, and if project type is not series then return None.
+    Args:
+        astType (str): asset types is only ['Character', 'Prop', 'Set', 'SetElement', 'Vehicle'].
+
+    Returns:
+            all asset episode numbers (list).
+    """
+    return project_pathGen.bsw_getAllAssetEpisodes(astType)
 
 
 def bs_createAssetDirectories(astType, astName, episode=None):
@@ -84,13 +89,13 @@ def bs_getAssetFileAndVersions(astType, astDept, astName, episode=None):
     @ also value is a dictionary.
     @ value dictionary keys are detail types like ('path','size','owner',etc.).
     Args:
-        astType (str): asset Type Character, Prop, Set, Vehicle.
+        astType (str): asset Type Character, Prop, Set, SetElement, Vehicle.
         astDept (str): Design, Model, Texture, Rig, Light or etc.
         astName (str): assetName.
         episode (str): episode number.
 
     Returns:
-            mainFiles and version files (Both return type is dict.)
+            mainFiles and version files (list, list)
     """
     if bs_getEnv()['projectType'] == 'series':
         return project_pathGen.bsw_getAssetFileAndVersions(astType, astDept, astName, episode=episode)
@@ -163,6 +168,18 @@ def bs_getOnlyFinalFileOfDept(astType, astDept, astName, episode=None):
     if bs_getEnv()['projectType'] == 'series':
         return project_pathGen.bsw_getOnlyFinalFileOfDept(astType, astDept, astName, episode=episode)
     return project_pathGen.bsw_getOnlyFinalFileOfDept(astType, astDept, astName)
+
+
+def bs_getAssetPathFromFileName(fileName):
+    """
+    @ get asset dir from file name.
+    Args:
+        fileName (str): fileName
+
+    Returns:
+            filePath(str).
+    """
+    return project_pathGen.bsw_getAssetPathFromFileName(fileName)
 
 # def bs_animFilePath(epi, seq, shot):
 #     """

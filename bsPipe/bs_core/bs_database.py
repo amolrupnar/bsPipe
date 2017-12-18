@@ -35,6 +35,10 @@ class Bs_Database(object):
                         comment=repr(comment))
         dtCur.execute(dataForTable)
 
+    @staticmethod
+    def bs_fetchDatabase():
+        print 111111111
+
 
 if __name__ == '__main__':
     print 111111111

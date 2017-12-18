@@ -94,9 +94,8 @@ class Bs_AssetPublish(QtGui.QMainWindow, bsui_assetPublish.Ui_AssetPublishMainWi
         self.bsap_prevVers_tableWidget.resizeColumnsToContents()
 
     def publishAsset(self):
-        commentText = self.bsap_comment_TE.toPlainText()
-        print type(commentText)
-        bs_assetPublish.bs_publishCurrentAsset('this is passed texxt')
+        commentText = str(self.bsap_comment_TE.toPlainText())
+        bs_assetPublish.bs_publishCurrentAsset(comment=commentText)
         self.addItemInTable()
 
 
