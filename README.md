@@ -69,3 +69,7 @@ v-0.1
         * "05_vehicle"
     * "02_prod"
     * "03_post"
+
+### Python Site Packages list ###
+* standard library packages
+* pymysql

@@ -2,15 +2,18 @@
   <dictionary name="Amol">
     <words>
       <w>autodesk</w>
+      <w>bsui</w>
       <w>isam</w>
       <w>kicko</w>
       <w>persp</w>
       <w>programation</w>
       <w>proj</w>
+      <w>pymysql</w>
       <w>pythonpath</w>
       <w>screenshot</w>
       <w>sourceimages</w>
       <w>speedo</w>
+      <w>winbs</w>
       <w>xbmlangpath</w>
     </words>
   </dictionary>

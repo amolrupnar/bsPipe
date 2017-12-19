@@ -1,13 +1,6 @@
 import os
 from pymel import core as pm
 
-# make basic paths.
-os.environ['BSW_PROJECT_SHORT'] = 'kns'
-os.environ['BSW_PROJECT_NAME'] = 'kicko_speedo'
-os.environ['BSW_PROJECT_DIR'] = 'D:/zTempDir'
-os.environ['BSW_PROGRAM_DIR'] = 'D:/'
-os.environ['BSW_PROJECT_TYPE'] = 'series'
-
 
 class ProjectNamingInputs(object):
     def __init__(self):

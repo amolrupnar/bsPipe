@@ -20,8 +20,8 @@ global proc shelf_BSW_ANIM () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotBuilder.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotBuilder.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotBuilder.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotBuilder.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
@@ -46,8 +46,8 @@ global proc shelf_BSW_ANIM () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotOpen.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotOpen.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotOpen.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotOpen.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
@@ -72,8 +72,8 @@ global proc shelf_BSW_ANIM () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotManager.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_ShotManager.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotManager.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_ShotManager.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1

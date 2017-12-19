@@ -20,8 +20,8 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetManager.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetManager.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_AssetManager.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_AssetManager.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
@@ -46,8 +46,8 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_CreateRigBase.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_CreateRigBase.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_CreateRigBase.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_CreateRigBase.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
@@ -72,8 +72,8 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetPublish.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_AssetPublish.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_AssetPublish.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_AssetPublish.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
@@ -233,12 +233,12 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/AS5.png" 
-        -image1 "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/AS5.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/AS5.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/AS5.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "// advance skeleton 5\n$serverEnv=`getenv \"BSW_PROGRAM_SERVER\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\";AdvancedSkeleton5\");\neval($path);" 
+        -command "// advance skeleton 5\n$serverEnv=`getenv \"BSW_PROGRAM_DIR\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\";AdvancedSkeleton5\");\neval($path);" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -259,12 +259,12 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
-        -image1 "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asBiped.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "// advance skeleton 5 biped.\n$serverEnv=`getenv \"BSW_PROGRAM_SERVER\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/Selector/biped.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
+        -command "// advance skeleton 5 biped.\n$serverEnv=`getenv \"BSW_PROGRAM_DIR\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/Selector/biped.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -285,12 +285,12 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asFace.png" 
-        -image1 "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asFace.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asFace.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/icons/asFace.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "// advance skeleton 5 face.\n$serverEnv=`getenv \"BSW_PROGRAM_SERVER\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/Selector/face.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
+        -command "// advance skeleton 5 face.\n$serverEnv=`getenv \"BSW_PROGRAM_DIR\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/Selector/face.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -311,12 +311,12 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
-        -image1 "$BSW_SERVER/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/pickerFiles/icons/picker.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "// advance skeleton 5 Picker.\n$serverEnv=`getenv \"BSW_PROGRAM_SERVER\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/picker.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
+        -command "// advance skeleton 5 Picker.\n$serverEnv=`getenv \"BSW_PROGRAM_DIR\"`;\n$fullPath = $serverEnv + \"/Pipeline/CoreScripts/MelScripts/AdvancedSkeleton5/AdvancedSkeleton5Files/picker/picker.mel\";\n$path = (\"source \\\"\"+$fullPath+\"\\\"\");\neval($path);" 
         -sourceType "mel" 
         -commandRepeatable 1
         -flat 1
@@ -337,8 +337,8 @@ global proc shelf_BSW_RIG () {
         -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
-        -image "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_RIG.png" 
-        -image1 "$BSW_SERVER/Pipeline/bsPipe/bsPipe/bs_app/configs/KNS/showConfig/icons/BSW_RIG.png" 
+        -image "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_RIG.png" 
+        -image1 "$BSW_PROGRAM_DIR/Pipeline/bsPipe/bsPipe/bs_app/configs/kns/showConfig/icons/BSW_RIG.png" 
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
