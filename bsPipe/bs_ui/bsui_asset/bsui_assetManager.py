@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:/bsw_programation/01_maya/Pipeline/bsPipe/bsPipe/bs_ui/bsui_asset/bsui_assetManager.ui'
 #
-# Created: Mon Dec 18 14:30:00 2017
+# Created: Tue Dec 19 12:41:12 2017
 #      by: pyside-uic 0.2.14 running on PySide 1.2.0
 #
 # WARNING! All changes made in this file will be lost!
@@ -279,9 +279,9 @@ class Ui_bs_assetManagerMainWin(object):
         self.label_4.setAlignment(QtCore.Qt.AlignCenter)
         self.label_4.setObjectName("label_4")
         self.verticalLayout_2.addWidget(self.label_4)
-        self.bsAm_versionInfo_lw = QtGui.QListWidget(self.layoutWidget1)
-        self.bsAm_versionInfo_lw.setObjectName("bsAm_versionInfo_lw")
-        self.verticalLayout_2.addWidget(self.bsAm_versionInfo_lw)
+        self.bsAm_versionInfo_TE = QtGui.QTextEdit(self.layoutWidget1)
+        self.bsAm_versionInfo_TE.setObjectName("bsAm_versionInfo_TE")
+        self.verticalLayout_2.addWidget(self.bsAm_versionInfo_TE)
         self.horizontalLayout_2.addLayout(self.verticalLayout_2)
         self.layoutWidget2 = QtGui.QWidget(self.centralwidget)
         self.layoutWidget2.setGeometry(QtCore.QRect(0, 660, 871, 42))

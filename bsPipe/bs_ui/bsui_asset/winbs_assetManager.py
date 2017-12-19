@@ -7,12 +7,15 @@ from bsPipe.bs_ui import bs_qui
 from bsPipe.bs_ui.bsui_asset import bsui_assetManager
 from bsPipe.bs_core import bs_pathGenerator
 from bsPipe.bs_core import bs_os
+from bsPipe.bs_core import bs_database
 
 reload(bs_mayaFile)
 reload(bs_reference)
 reload(bs_qui)
 reload(bsui_assetManager)
 reload(bs_pathGenerator)
+reload(bs_os)
+reload(bs_database)
 
 
 class Bs_AssetManagerUIConn(QtGui.QMainWindow, bsui_assetManager.Ui_bs_assetManagerMainWin):
@@ -60,7 +63,7 @@ class Bs_AssetManagerUIConn(QtGui.QMainWindow, bsui_assetManager.Ui_bs_assetMana
     def fillFilesAndVersionOnChangeCommand(self):
         # clear fields.
         self.bsAm_assetVersions_lw.clear()
-        self.bsAm_versionInfo_lw.clear()
+        self.bsAm_versionInfo_TE.clear()
         self.bsAm_chars_lw.itemSelectionChanged.connect(self.addFileAndVersionsInAssetLw)
         self.bsAm_props_lw.itemSelectionChanged.connect(self.addFileAndVersionsInAssetLw)
         self.bsAm_sets_lw.itemSelectionChanged.connect(self.addFileAndVersionsInAssetLw)
@@ -172,6 +175,18 @@ class Bs_AssetManagerUIConn(QtGui.QMainWindow, bsui_assetManager.Ui_bs_assetMana
         self.owner_lbl.setText(bs_os.bs_getFileOwner(filePath))
         self.size_lbl.setText(bs_os.bs_getFileSize(filePath))
         self.time_lbl.setText(bs_os.bs_getFileDateTime(filePath))
+        # get comment from the database.
+        # get table name using split selection if file is version file so increase split numbers.
+        if len(assetName.split('_')) == 6:
+            tableName = assetName[:-8]
+        else:
+            tableName = assetName[:-3]
+        try:
+            addInfoDB = bs_database.Bs_Database()
+            comment = addInfoDB.bs_databaseAssetComment(tableName, str(assetName))
+            self.bsAm_versionInfo_TE.setText(comment)
+        except:
+            self.bsAm_versionInfo_TE.setText('comment not found\ndatabase connection error')
 
     def getFilePath(self):
         assetName = self.bsAm_assetVersions_lw.currentItem().text()

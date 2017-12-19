@@ -663,7 +663,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QListWidget" name="bsAm_versionInfo_lw"/>
+        <widget class="QTextEdit" name="bsAm_versionInfo_TE"/>
        </item>
       </layout>
      </item>
